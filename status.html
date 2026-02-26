@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Status — AI Automation Setup</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="section container" style="padding-top:2rem;">
+    <h1>📍 Project Status</h1>
+    <p id="statusTop">Loading status...</p>
+    <ul id="timeline" class="list"></ul>
+    <section id="briefWrap" class="card hidden">
+      <h2>Latest implementation brief snapshot</h2>
+      <pre id="briefPreview" class="brief-box"></pre>
+    </section>
+  </main>
+
+  <script>
+    (async function loadStatus() {
+      const params = new URLSearchParams(window.location.search);
+      const leadId = params.get('lead_id');
+      const token = params.get('token');
+      const top = document.getElementById('statusTop');
+      const list = document.getElementById('timeline');
+      const briefWrap = document.getElementById('briefWrap');
+      const briefPreview = document.getElementById('briefPreview');
+
+      if (!leadId || !token) {
+        top.textContent = 'Missing lead reference.';
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/status?lead_id=${encodeURIComponent(leadId)}&token=${encodeURIComponent(token)}`);
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || 'Failed to load status');
+
+        top.textContent = `Current stage: ${data.lead.status} | Score: ${data.lead.qualificationScore}/100`;
+
+        list.innerHTML = '';
+        (data.events || []).forEach((ev) => {
+          const li = document.createElement('li');
+          li.textContent = `${new Date(ev.ts).toLocaleString()} — ${ev.stage}: ${ev.message}`;
+          list.appendChild(li);
+        });
+
+        if (data.brief) {
+          briefWrap.classList.remove('hidden');
+          briefPreview.textContent = JSON.stringify(data.brief, null, 2);
+        }
+      } catch (err) {
+        top.textContent = err.message || 'Could not load status.';
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "ai-automation-setup-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page with real lead capture endpoint",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file=.env server.js",
+    "campaign:send": "node --env-file=.env scripts/send-campaign.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemailer": "^6.9.15"
+  }
+}

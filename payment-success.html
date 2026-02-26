@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment received — AI Automation Setup</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="section container" style="padding-top: 2rem;">
+    <h1>✅ Payment received</h1>
+    <p id="status">Finalizing secure payment confirmation...</p>
+
+    <section id="intakeSection" class="card hidden">
+      <h2>Step 3 — Intake questionnaire</h2>
+      <p>Complete this now so implementation can start without a call.</p>
+      <form id="intakeForm">
+        <label for="goals">Top goals</label>
+        <textarea id="goals" required rows="3" placeholder="What should this automation achieve?"></textarea>
+
+        <label for="currentTools">Current tools</label>
+        <input id="currentTools" type="text" placeholder="Gmail, HubSpot, Google Sheets..." />
+
+        <label for="constraints">Constraints / access blockers</label>
+        <textarea id="constraints" rows="2" placeholder="Security, approval delays, API limits..."></textarea>
+
+        <label for="successMetric">Success metric</label>
+        <input id="successMetric" type="text" placeholder="e.g. 70% less manual follow-up" />
+
+        <button class="btn" type="submit" id="intakeBtn">Submit intake + generate brief</button>
+        <p id="intakeStatus"></p>
+      </form>
+    </section>
+
+    <section id="briefSection" class="card hidden">
+      <h2>Auto-generated implementation brief</h2>
+      <pre id="briefOutput" class="brief-box"></pre>
+    </section>
+
+    <p><a class="btn" href="/">Back to homepage</a></p>
+  </main>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const intakeSection = document.getElementById('intakeSection');
+    const intakeForm = document.getElementById('intakeForm');
+    const intakeBtn = document.getElementById('intakeBtn');
+    const intakeStatus = document.getElementById('intakeStatus');
+    const briefSection = document.getElementById('briefSection');
+    const briefOutput = document.getElementById('briefOutput');
+
+    let leadId = null;
+    let sessionId = null;
+    let paymentRef = null;
+
+    async function confirmPayment() {
+      const params = new URLSearchParams(window.location.search);
+      sessionId = params.get('session_id');
+      paymentRef = params.get('payment_ref');
+      leadId = params.get('lead_id');
+
+      if (!sessionId && !paymentRef) {
+        statusEl.textContent = 'Payment is processing. Once marked paid, open this page with lead_id + payment_ref to unlock intake.';
+        return;
+      }
+
+      try {
+        const q = new URLSearchParams();
+        if (sessionId) q.set('session_id', sessionId);
+        if (paymentRef) q.set('payment_ref', paymentRef);
+        if (leadId) q.set('lead_id', leadId);
+
+        const res = await fetch(`/api/payments/confirm?${q.toString()}`);
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.error || 'Could not verify payment');
+
+        leadId = leadId || data.payment?.leadId || data.lead?.id || null;
+        paymentRef = paymentRef || data.payment?.paymentRef || data.payment?.reference || null;
+
+        statusEl.textContent = 'Payment confirmed. Intake unlocked below.';
+        intakeSection.classList.remove('hidden');
+      } catch (err) {
+        statusEl.textContent = err.message || 'Could not confirm payment right now.';
+      }
+    }
+
+    intakeForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      intakeStatus.textContent = '';
+
+      if (!leadId || (!sessionId && !paymentRef)) {
+        intakeStatus.textContent = 'Cannot submit intake yet. Missing lead/payment reference.';
+        intakeStatus.className = 'error';
+        return;
+      }
+
+      intakeBtn.disabled = true;
+      intakeBtn.textContent = 'Generating brief...';
+
+      try {
+        const payload = {
+          leadId,
+          sessionId,
+          paymentRef,
+          goals: (document.getElementById('goals')?.value || '').trim(),
+          currentTools: (document.getElementById('currentTools')?.value || '').trim(),
+          constraints: (document.getElementById('constraints')?.value || '').trim(),
+          successMetric: (document.getElementById('successMetric')?.value || '').trim()
+        };
+
+        const res = await fetch('/api/intake', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.success) throw new Error(data.error || 'Intake failed');
+
+        intakeStatus.textContent = 'Intake submitted. Brief generated ✅';
+        intakeStatus.className = 'success';
+
+        briefSection.classList.remove('hidden');
+        briefOutput.textContent = JSON.stringify(data.brief, null, 2);
+      } catch (err) {
+        intakeStatus.textContent = err.message || 'Failed to submit intake';
+        intakeStatus.className = 'error';
+      } finally {
+        intakeBtn.disabled = false;
+        intakeBtn.textContent = 'Submit intake + generate brief';
+      }
+    });
+
+    confirmPayment();
+  </script>
+</body>
+</html>

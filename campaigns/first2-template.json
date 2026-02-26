@@ -1,0 +1,4 @@
+{
+  "subject": "Quick automation idea for {{company}}",
+  "body": "Hi {{first_name}},\n\n{{hook}}\n\nWe build AI agents that handle the busywork (lead capture, outreach, follow-ups) so founders focus on product.\n\n€99 starter plan. Asynchronous setup — no calls required.\n\nSee if there's a fit: https://www.discodruif.com\n\n—\ndisco druif team\n\nUnsubscribe: {{unsubscribe_link}}"
+}

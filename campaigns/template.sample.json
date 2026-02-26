@@ -1,0 +1,5 @@
+{
+  "subject": "{{first_name}}, quick automation idea for {{company}}",
+  "body": "Hey {{first_name}},\n\nI noticed {{company}} is scaling and thought this could help: we set up lightweight AI automations that cut repetitive ops work in days, not months.\n\nIf useful, I can share a concrete 3-step plan for your team this week.\n\nCheers,\nDisco Druif",
+  "unsubscribeBaseUrl": "https://example.com/unsubscribe"
+}

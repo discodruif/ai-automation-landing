@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Automation Setup — Self-Serve Delivery</title>
+  <meta name="description" content="Self-serve AI automation setup: qualify, choose package, pay, and launch without calls." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">No-Call Delivery Funnel</p>
+      <h1>Get your AI automation project started <span>today</span> — no sales calls required.</h1>
+      <p class="sub">Submit your use case, get auto-qualified, choose package, pay securely, then complete intake.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container">
+      <h2>How this works</h2>
+      <ol class="list">
+        <li>Submit lead details + use case</li>
+        <li>Auto qualification score in seconds</li>
+        <li>If qualified: choose package and pay</li>
+        <li>Complete intake questionnaire after payment</li>
+        <li>Track status online (no calls needed)</li>
+      </ol>
+    </section>
+
+    <section id="contact" class="section container card">
+      <h2>Step 1 — Tell us what you need</h2>
+      <form id="leadForm" action="https://formspree.io/f/xlgwzkjr" method="POST" novalidate>
+        <input id="startedAt" name="startedAt" type="hidden" />
+        <label class="hp-field" for="website">Website (leave this empty)</label>
+        <input class="hp-field" id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" required aria-describedby="nameError" />
+        <p id="nameError" class="field-error" aria-live="polite"></p>
+
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" required aria-describedby="emailError" />
+        <p id="emailError" class="field-error" aria-live="polite"></p>
+
+        <label for="message">What do you want to automate?</label>
+        <textarea id="message" name="message" rows="4" required aria-describedby="messageError"></textarea>
+        <p id="messageError" class="field-error" aria-live="polite"></p>
+
+        <label for="budget">Budget</label>
+        <select id="budget" name="budget" required>
+          <option value="">Select budget</option>
+          <option value="under-99">Under €99</option>
+          <option value="99-249">€99 - €249</option>
+          <option value="250-499">€250 - €499</option>
+          <option value="500+">€500+</option>
+        </select>
+
+        <label for="urgency">When do you want this live?</label>
+        <select id="urgency" name="urgency" required>
+          <option value="">Select timeline</option>
+          <option value="asap">ASAP</option>
+          <option value="this-week">This week</option>
+          <option value="this-month">This month</option>
+          <option value="exploring">Just exploring</option>
+        </select>
+
+        <label for="taskVolume">How many repetitive tasks/week?</label>
+        <select id="taskVolume" name="taskVolume" required>
+          <option value="">Select volume</option>
+          <option value="low">1-10</option>
+          <option value="medium">11-30</option>
+          <option value="high">31+</option>
+        </select>
+
+        <button type="submit" class="btn" id="submitBtn">Get Qualification Result</button>
+        <p id="formStatus" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="packageSection" class="section container card hidden">
+      <h2>Step 2 — Choose package + pay</h2>
+      <p id="qualificationSummary"></p>
+      <div id="packageList" class="grid"></div>
+      <p id="statusLinkWrap" class="small"></p>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <p>© <span id="year"></span> AI Automation Setup</p>
+    <p class="legal-links"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
