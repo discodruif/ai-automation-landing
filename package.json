@@ -9,6 +9,7 @@
     "campaign:send": "node --env-file=.env scripts/send-campaign.js"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "express": "^4.21.2",
     "nodemailer": "^6.9.15"
   }

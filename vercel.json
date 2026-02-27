@@ -1,11 +1,11 @@
 {
   "rewrites": [
+    { "source": "/dental", "destination": "/dental.html" },
+    { "source": "/dental/:path*", "destination": "/dental.html" },
     { "source": "/api/:path*", "destination": "/api/index.js" },
-    { "source": "/health", "destination": "/api/index.js" }
-  ],
-  "routes": [
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/styles.css", "dest": "/styles.css" },
-    { "src": "/script.js", "dest": "/script.js" }
+    { "source": "/health", "destination": "/api/index.js" },
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/styles.css", "destination": "/styles.css" },
+    { "source": "/script.js", "destination": "/script.js" }
   ]
 }
