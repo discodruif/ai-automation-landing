@@ -1,212 +1,129 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Dental Receptionist — Never Miss an Emergency Call</title>
-  <meta name="description" content="AI voice agent for dental practices. Answers calls 24/7, books appointments, handles emergencies. Capture after-hours patients your competitors miss." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Dental Receptionist | 24/7 Emergency Call Capture</title>
+  <meta name="description" content="AI voice agent for dental practices. Never miss emergency calls. 24/7 answering, appointment booking, patient triage. Start 14-day free pilot.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    .dental-hero { background: linear-gradient(135deg, #0f4c75 0%, #3282b8 100%); }
-    .pain-points { background: #f8f9fa; padding: 2rem; border-radius: 12px; margin: 1rem 0; }
-    .pain-points h3 { color: #e74c3c; margin-top: 0; }
-    .pain-points ul { margin: 0; padding-left: 1.5rem; }
-    .pain-points li { margin-bottom: 0.75rem; }
-    .stat-box { background: #fff; border-left: 4px solid #3282b8; padding: 1rem; margin: 1rem 0; }
-    .stat-number { font-size: 2rem; font-weight: bold; color: #3282b8; }
-    .social-proof { background: #e8f4f8; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; }
-    .urgency-banner { background: #e74c3c; color: white; text-align: center; padding: 0.75rem; border-radius: 8px; margin-bottom: 1.5rem; }
-    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-    .feature-card { background: #fff; padding: 1.25rem; border-radius: 8px; border: 1px solid #e0e0e0; }
-    .feature-card h4 { margin-top: 0; color: #0f4c75; }
-    .cta-section { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 3rem; text-align: center; border-radius: 12px; margin: 2rem 0; }
-    .cta-section h2 { margin-top: 0; font-size: 2.5rem; }
-    .cta-section .btn { background: #fff; color: #27ae60; padding: 1rem 2rem; font-size: 1.25rem; border-radius: 8px; text-decoration: none; display: inline-block; margin: 0.5rem; font-weight: bold; }
-    .cta-section .btn-secondary { background: transparent; color: #fff; border: 2px solid #fff; }
-    .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-    .pricing-card { background: #fff; padding: 2rem; border-radius: 12px; border: 2px solid #e0e0e0; text-align: center; }
-    .pricing-card.featured { border-color: #3282b8; position: relative; }
-    .pricing-card.featured::before { content: "MOST POPULAR"; background: #3282b8; color: white; padding: 0.25rem 1rem; font-size: 0.75rem; border-radius: 20px; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); }
-    .pricing-card h3 { margin-top: 0; color: #0f4c75; }
-    .pricing-card .price { font-size: 3rem; font-weight: bold; color: #27ae60; }
-    .pricing-card .price span { font-size: 1rem; color: #666; }
-    .pricing-card ul { text-align: left; margin: 1.5rem 0; padding-left: 1.5rem; }
-    .pricing-card ul li { margin-bottom: 0.5rem; }
-    .pricing-card .btn { width: 100%; margin-top: 1rem; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.6; color: #1e293b; }
+    
+    .hero { min-height: 100vh; background: linear-gradient(135deg, #0f172a 0%, #134e4a 100%); display: grid; place-items: center; text-align: center; color: white; padding: 2rem; position: relative; }
+    .hero-content { max-width: 800px; }
+    .hero-badge { display: inline-block; background: rgba(20,184,166,0.2); color: #14b8a6; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.875rem; font-weight: 600; margin-bottom: 2rem; }
+    .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+    .hero h1 span { color: #14b8a6; }
+    .hero p { font-size: 1.25rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 2rem; }
+    
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; font-size: 1rem; font-weight: 600; border-radius: 12px; text-decoration: none; transition: all 0.3s; }
+    .btn-primary { background: #14b8a6; color: white; box-shadow: 0 10px 40px rgba(20,184,166,0.4); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(20,184,166,0.5); }
+    .btn-secondary { background: rgba(255,255,255,0.1); color: white; border: 2px solid rgba(255,255,255,0.3); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.2); }
+    
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+    
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    
+    h2 { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; }
+    .section-subtitle { text-align: center; color: #64748b; margin-bottom: 3rem; }
+    
+    .pain-section { background: #f8fafc; }
+    .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .pain-card { background: white; padding: 2rem; border-radius: 16px; border-left: 4px solid #ef4444; }
+    .pain-card h4 { margin-bottom: 0.5rem; }
+    .pain-card p { color: #64748b; font-size: 0.95rem; }
+    
+    .stat-section { background: #0f172a; color: white; text-align: center; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; }
+    .stat-number { font-size: 3rem; font-weight: 800; color: #14b8a6; }
+    
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .feature-card { background: white; padding: 2rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .feature-card h4 { margin: 1rem 0 0.5rem; }
+    .feature-card p { color: #64748b; }
+    
+    .testimonials-section { background: #f8fafc; }
+    .testimonial { background: white; padding: 2rem; border-radius: 16px; margin-bottom: 1.5rem; }
+    .testimonial-text { font-size: 1.1rem; color: #374151; margin-bottom: 1rem; font-style: italic; }
+    .testimonial-author { font-weight: 600; color: #0f172a; }
+    .testimonial-role { color: #64748b; font-size: 0.9rem; }
+    
+    .pricing-section { background: white; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+    .pricing-card { background: white; padding: 2rem; border-radius: 20px; border: 2px solid #e2e8f0; text-align: center; }
+    .pricing-card.featured { border-color: #14b8a6; position: relative; }
+    .popular-tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #14b8a6; color: white; padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    .pricing-card h3 { font-size: 1.5rem; margin: 1rem 0 0.5rem; }
+    .pricing-card .price { font-size: 3rem; font-weight: 800; color: #0f172a; }
+    .pricing-card .price span { font-size: 1rem; color: #64748b; font-weight: 400; }
+    .pricing-card ul { list-style: none; margin: 1.5rem 0; text-align: left; }
+    .pricing-card li { padding: 0.5rem 0; border-bottom: 1px solid #f1f5f9; }
+    .pricing-card li::before { content: '✓ '; color: #14b8a6; font-weight: 700; }
+    
+    .cta-section { background: linear-gradient(135deg, #134e4a 0%, #0d9488 100%); color: white; text-align: center; }
+    .cta-section h2 { color: white; margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.9); margin-bottom: 2rem; }
+    
+    footer { background: #0f172a; color: white; padding: 2rem; text-align: center; }
+    footer p { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
   </style>
 </head>
 <body>
-  <header class="hero dental-hero">
-    <div class="container">
-      <p class="eyebrow">🦷 For Dental Practices</p>
-      <h1>Your AI Receptionist Captures <span>Emergency Calls at 2 AM</span> — While Competitors Go to Voicemail</h1>
-      <p class="sub">70% of dental emergencies happen after hours. What happens to those calls? Our AI voice agent answers, qualifies, and books appointments 24/7. 14-day free pilot for dental practices.</p>
+  <header class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">🦷 BUILT FOR DENTAL PRACTICES</span>
+      <h1>Never Miss an <span>Emergency Call</span> Again</h1>
+      <p>AI receptionist that answers your calls 24/7, identifies true emergencies, and books appointments while you focus on patients. Join 3 practices trialing this month.</p>
+      <div class="hero-buttons">
+        <a href="https://calendly.com/discodruif/30min" class="btn btn-primary">Book 15-Min Demo</a>
+        <a href="https://www.paypal.com/ncp/payment/DLLLT523YPV4J" class="btn btn-secondary">Start Free Pilot</a>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="section container">
-      <div class="urgency-banner">
-        ⚡ Limited: 3 free pilots available this month — book yours before they're gone
-      </div>
-
-      <div class="pain-points">
-        <h3>🚨 The Problem Every Dental Practice Faces</h3>
-        <ul>
-          <li><strong>After-hours emergencies:</strong> Patients with tooth pain call at 10 PM — get voicemail, hang up, call the next practice on Google</li>
-          <li><strong>$2,000+ lost per missed call:</strong> Emergency root canals, extractions, implants — patients don't wait</li>
-          <li><strong>Staff burnout:</strong> Your team juggles 4 tasks while phones ring off the hook</li>
-          <li><strong>No-shows cost you:</strong> 15-20% of appointments ghost you — no automated reminders = empty chairs</li>
-        </ul>
-      </div>
-
-      <div class="stat-box">
-        <div class="stat-number">68%</div>
-        <p>of dental patients who reach voicemail <strong>do not leave a message</strong> and call the next practice on the list</p>
-        <p class="small"><em>Source: Dental Economics Industry Survey</em></p>
-      </div>
-    </section>
-
-    <section class="section container">
-      <h2>How Your AI Dental Receptionist Works</h2>
-      
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h4>📞 Answers Every Call Instantly</h4>
-          <p>Zero wait time. Natural voice. Customized greeting with your practice name.</p>
-        </div>
-        <div class="feature-card">
-          <h4>🚨 Emergency Triage</h4>
-          <p>AI asks 3 questions to identify emergencies. True emergencies forwarded immediately. Non-urgent booking for next available slot.</p>
-        </div>
-        <div class="feature-card">
-          <h4>📅 Smart Scheduling</h4>
-          <p>Checks your calendar in real-time. Books appointments directly. No double-booking.</p>
-        </div>
-        <div class="feature-card">
-          <h4>💬 Confirmation & Reminders</h4>
-          <p>Auto-sends SMS confirmations. Reduces no-shows by 40% with smart reminders.</p>
-        </div>
-        <div class="feature-card">
-          <h4>🌙 24/7 Coverage</h4>
-          <p>Never miss a call again — weekends, nights, holidays. Your AI never sleeps.</p>
-        </div>
-        <div class="feature-card">
-          <h4>📊 Call Analytics</h4>
-          <p>Track conversion rates, peak call times, emergency patterns. Optimize your schedule.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section container">
-      <h2>What Makes This Different from Generic AI Call Centers</h2>
-      
-      <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
-        <thead>
-          <tr style="background: #0f4c75; color: white;">
-            <th style="padding: 1rem; text-align: left;">Feature</th>
-            <th style="padding: 1rem; text-align: left;">Generic AI Service</th>
-            <th style="padding: 1rem; text-align: left; color: #fff;">Our Dental-Specific AI</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom: 1px solid #e0e0e0;">
-            <td style="padding: 1rem;">Emergency Protocols</td>
-            <td style="padding: 1rem;">✗ Generic scripts</td>
-            <td style="padding: 1rem; background: #e8f4f8;">✓ Dental emergency triage logic</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e0e0e0;">
-            <td style="padding: 1rem;">PMS Integration</td>
-            <td style="padding: 1rem;">✗ Manual export</td>
-            <td style="padding: 1rem; background: #e8f4f8;">✓ Direct calendar sync</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #e0e0e0;">
-            <td style="padding: 1rem;">Treatment Knowledge</td>
-            <td style="padding: 1rem;">✗ "Uhh... what service do you need?"</td>
-            <td style="padding: 1rem; background: #e8f4f8;">✓ Understands implants vs extractions vs cosmetics</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem;">Onboarding Time</td>
-            <td style="padding: 1rem;">✗ 4-6 weeks</td>
-            <td style="padding: 1rem; background: #e8f4f8;">✓ 48-hour setup with your exact workflows</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="section container">
-      <div class="social-proof">
-        <h3>💬 What Dental Practices Say</h3>
-        <blockquote>
-          <p>"We were losing 5-8 emergency calls per week to voicemail. Within 2 weeks of using this, we booked 12 after-hours appointments we would have lost. One emergency root canal paid for 6 months of the service."</p>
-          <cite>— Practice Manager, 3-location Dental Group</cite>
-        </blockquote>
-      </div>
-    </section>
-
-    <section class="section container">
-      <h2>Packages for Dental Practices</h2>
-      
-      <div class="pricing-cards">
-        <div class="pricing-card">
-          <h3>🦷 Starter</h3>
-          <div class="price">€199 <span>/month</span></div>
-          <p>For single-dentist practices</p>
-          <ul>
-            <li>500 minutes/month</li>
-            <li>Basic scheduling (business hours)</li>
-            <li>Voicemail transcription</li>
-            <li>SMS confirmations</li>
-            <li>48-hour setup</li>
-          </ul>
-          <a href="https://www.paypal.com/ncp/payment/DLLLT523YPV4J" class="btn">Start 14-Day Pilot</a>
-        </div>
-
-        <div class="pricing-card featured">
-          <h3>🦷 Practice</h3>
-          <div class="price">€399 <span>/month</span></div>
-          <p>For multi-dentist practices — MOST POPULAR</p>
-          <ul>
-            <li>Unlimited minutes</li>
-            <li>24/7 emergency triage</li>
-            <li>Calendar integration</li>
-            <li>SMS + email reminders</li>
-            <li>Call analytics dashboard</li>
-            <li>48-hour setup</li>
-          </ul>
-          <a href="https://www.paypal.com/ncp/payment/DLLLT523YPV4J" class="btn">Start 14-Day Pilot</a>
-        </div>
-
-        <div class="pricing-card">
-          <h3>🦷 Enterprise</h3>
-          <div class="price">€799 <span>/month</span></div>
-          <p>For multi-location practices</p>
-          <ul>
-            <li>Everything in Practice</li>
-            <li>Multi-location support</li>
-            <li>Priority support</li>
-            <li>Custom integrations</li>
-            <li>Dedicated onboarding</li>
-          </ul>
-          <a href="https://www.paypal.com/ncp/payment/DLLLT523YPV4J" class="btn">Start 14-Day Pilot</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section container cta-section">
-      <h2>Ready to Stop Missing Emergency Calls?</h2>
-      <p style="font-size: 1.25rem; margin-bottom: 2rem;">Join 3 other practices this month for a free 14-day pilot. No setup fees. Cancel anytime.</p>
-      <a href="https://calendly.com/discodruif/30min" class="btn">Book Your 30-Min Demo</a>
-      <a href="https://www.paypal.com/ncp/payment/DLLLT523YPV4J" class="btn btn-secondary">Start Free Pilot Now</a>
-      <p style="margin-top: 2rem; font-size: 1rem; opacity: 0.9;">Questions? Reply to the email we sent — we'll respond within 2 hours.</p>
-    </section>
-  </main>
-
-  <footer class="footer">
+  <section class="pain-section">
     <div class="container">
-      <p>&copy; 2026 NovaMind Labs. All rights reserved.</p>
-      <p>Questions? Email: maurits@discodruif.com | Built for dental practices across the Netherlands</p>
+      <h2>The Problem Every Practice Faces</h2>
+      <p class="section-subtitle">That 2 AM toothache doesn't wait for business hours</p>
+      <div class="pain-grid">
+        <div class="pain-card">
+          <h4>🚨 After-Hours Emergencies</h4>
+          <p>Patients in pain call at 10 PM, reach voicemail, and call your competitor instead. One missed emergency = €2,000+ lost revenue.</p>
+        </div>
+        <div class="pain-card">
+          <h4>📞 Constant Interruptions</h4>
+          <p>Your team juggles 4 tasks while phones ring off the hook. Focus on patients gets fragmented.</p>
+        </div>
+        <div class="pain-card">
+          <h4>❌ No-Show Epidemic</h4>
+          <p>15-20% of appointments ghost you. No automated reminders = empty chairs and lost billings.</p>
+        </div>
+        <div class="pain-card">
+          <h4>😤 Staff Burnout</h4>
+          <p>Answering the same questions 50x/day. Your team didn't join dentistry to be receptionists.</p>
+        </div>
+      </div>
     </div>
-  </footer>
-</body>
-</html>
+  </section>
+
+  <section class="stat-section">
+    <div class="container">
+      <div class="stat-grid">
+        <div><div class="stat-number">68%</div><p>of patients who hit voicemail never leave a message</p></div>
+        <div><div class="stat-number">24/7</div><p>coverage — weekends, nights, holidays</p></div>
+        <div><div class="stat-number">40%</div><p>fewer no-shows with smart reminders</p></div>
+        <div><div class="stat-number">48h</div><p>from payment to go-live</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <h2>What Your AI Receptionist Does</h2>
+      <p class="section-subtitle">Built specifically for dental
