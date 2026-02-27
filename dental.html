@@ -19,6 +19,20 @@
     .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
     .feature-card { background: #fff; padding: 1.25rem; border-radius: 8px; border: 1px solid #e0e0e0; }
     .feature-card h4 { margin-top: 0; color: #0f4c75; }
+    .cta-section { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); color: white; padding: 3rem; text-align: center; border-radius: 12px; margin: 2rem 0; }
+    .cta-section h2 { margin-top: 0; font-size: 2.5rem; }
+    .cta-section .btn { background: #fff; color: #27ae60; padding: 1rem 2rem; font-size: 1.25rem; border-radius: 8px; text-decoration: none; display: inline-block; margin: 0.5rem; font-weight: bold; }
+    .cta-section .btn-secondary { background: transparent; color: #fff; border: 2px solid #fff; }
+    .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .pricing-card { background: #fff; padding: 2rem; border-radius: 12px; border: 2px solid #e0e0e0; text-align: center; }
+    .pricing-card.featured { border-color: #3282b8; position: relative; }
+    .pricing-card.featured::before { content: "MOST POPULAR"; background: #3282b8; color: white; padding: 0.25rem 1rem; font-size: 0.75rem; border-radius: 20px; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); }
+    .pricing-card h3 { margin-top: 0; color: #0f4c75; }
+    .pricing-card .price { font-size: 3rem; font-weight: bold; color: #27ae60; }
+    .pricing-card .price span { font-size: 1rem; color: #666; }
+    .pricing-card ul { text-align: left; margin: 1.5rem 0; padding-left: 1.5rem; }
+    .pricing-card ul li { margin-bottom: 0.5rem; }
+    .pricing-card .btn { width: 100%; margin-top: 1rem; }
   </style>
 </head>
 <body>
@@ -67,7 +81,7 @@
         </div>
         <div class="feature-card">
           <h4>📅 Smart Scheduling</h4>
-          <p>Checks your PMS (Dentrix, Eaglesoft, Open Dental) in real-time. Books appointments directly. No double-booking.</p>
+          <p>Checks your calendar in real-time. Books appointments directly. No double-booking.</p>
         </div>
         <div class="feature-card">
           <h4>💬 Confirmation & Reminders</h4>
@@ -104,7 +118,7 @@
           <tr style="border-bottom: 1px solid #e0e0e0;">
             <td style="padding: 1rem;">PMS Integration</td>
             <td style="padding: 1rem;">✗ Manual export</td>
-            <td style="padding: 1rem; background: #e8f4f8;">✓ Direct Dentrix/Eaglesoft sync</td>
+            <td style="padding: 1rem; background: #e8f4f8;">✓ Direct calendar sync</td>
           </tr>
           <tr style="border-bottom: 1px solid #e0e0e0;">
             <td style="padding: 1rem;">Treatment Knowledge</td>
@@ -133,24 +147,66 @@
     <section class="section container">
       <h2>Packages for Dental Practices</h2>
       
-      <div class="grid">
-        <div class="card">
+      <div class="pricing-cards">
+        <div class="pricing-card">
           <h3>🦷 Starter</h3>
           <div class="price">€199 <span>/month</span></div>
           <p>For single-dentist practices</p>
-          <ul class="features">
+          <ul>
             <li>500 minutes/month</li>
             <li>Basic scheduling (business hours)</li>
             <li>Voicemail transcription</li>
             <li>SMS confirmations</li>
             <li>48-hour setup</li>
           </ul>
-          <button class="btn" onclick="selectPackage('starter')">Choose Starter</button>
+          <a href="https://www.paypal.com/ncp/payment/DLLLT523YPV4J" class="btn">Start 14-Day Pilot</a>
         </div>
 
-        <div class="card featured">
-          <h3>🦷 Practice — MOST POPULAR</h3>
+        <div class="pricing-card featured">
+          <h3>🦷 Practice</h3>
           <div class="price">€399 <span>/month</span></div>
-          <p>For multi-dentist practices</p>
-          <ul class="features">
+          <p>For multi-dentist practices — MOST POPULAR</p>
+          <ul>
             <li>Unlimited minutes</li>
+            <li>24/7 emergency triage</li>
+            <li>Calendar integration</li>
+            <li>SMS + email reminders</li>
+            <li>Call analytics dashboard</li>
+            <li>48-hour setup</li>
+          </ul>
+          <a href="https://www.paypal.com/ncp/payment/DLLLT523YPV4J" class="btn">Start 14-Day Pilot</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>🦷 Enterprise</h3>
+          <div class="price">€799 <span>/month</span></div>
+          <p>For multi-location practices</p>
+          <ul>
+            <li>Everything in Practice</li>
+            <li>Multi-location support</li>
+            <li>Priority support</li>
+            <li>Custom integrations</li>
+            <li>Dedicated onboarding</li>
+          </ul>
+          <a href="https://www.paypal.com/ncp/payment/DLLLT523YPV4J" class="btn">Start 14-Day Pilot</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container cta-section">
+      <h2>Ready to Stop Missing Emergency Calls?</h2>
+      <p style="font-size: 1.25rem; margin-bottom: 2rem;">Join 3 other practices this month for a free 14-day pilot. No setup fees. Cancel anytime.</p>
+      <a href="https://calendly.com/discodruif/30min" class="btn">Book Your 30-Min Demo</a>
+      <a href="https://www.paypal.com/ncp/payment/DLLLT523YPV4J" class="btn btn-secondary">Start Free Pilot Now</a>
+      <p style="margin-top: 2rem; font-size: 1rem; opacity: 0.9;">Questions? Reply to the email we sent — we'll respond within 2 hours.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 NovaMind Labs. All rights reserved.</p>
+      <p>Questions? Email: maurits@discodruif.com | Built for dental practices across the Netherlands</p>
+    </div>
+  </footer>
+</body>
+</html>
